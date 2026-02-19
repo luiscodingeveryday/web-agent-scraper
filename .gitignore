@@ -1,0 +1,30 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+venv/
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+
+# Node
+node_modules/
+dist/
+*.log
+package-lock.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
