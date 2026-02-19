@@ -49,7 +49,7 @@ jobs:
           echo "GROQ_MODEL=llama-3.3-70b-versatile" >> .env
           echo "MAX_ITERATIONS=3" >> .env
       - name: Start services
-        run: docker-compose -f docker-compose.test.yml up -d
+        run: docker compose -f docker-compose.test.yml up -d
       - name: Wait for backend
         run: |
           timeout 60 bash -c 'until curl -f http://localhost:8000/api/health; do sleep 2; done'
@@ -62,7 +62,7 @@ jobs:
           make test-e2e  # <--- Usamos tu Makefile
       - name: Stop services
         if: always()
-        run: docker-compose -f docker-compose.test.yml down
+        run: docker compose -f docker-compose.test.yml down
 
   build:
     name: Build Docker Images
@@ -72,4 +72,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build images
-        run: docker-compose build 
+        run: docker compose build 
