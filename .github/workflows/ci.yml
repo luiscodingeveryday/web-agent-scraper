@@ -31,6 +31,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt 
       - name: Run unit tests
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MAX_ITERATIONS: 10
+          LOG_LEVEL: INFO
         run: make test-unit
 
   test-e2e:
@@ -50,6 +54,8 @@ jobs:
         run: |
           timeout 60 bash -c 'until curl -f http://localhost:8000/api/health; do sleep 2; done'
       - name: Run E2E tests
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           pip install -r requirements.txt
           playwright install chromium
